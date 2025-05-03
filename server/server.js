@@ -7,7 +7,6 @@ const path = require("path");
 const app = express();
 const server = http.createServer(app);
 
-// Uncomment below code to use frontend
 let io;
 if (process.env.ENVIRONMENT === "development") {
   io = new Server(server, {
