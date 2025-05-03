@@ -16,15 +16,17 @@ export default function Game() {
 
   const { winner, line: winningLine } = calculateWinner(squares);
 
+  const backendURL = import.meta.env.VITE_REACT_APP_BACKEND_URL;
+
   // Connect to socket event
   useEffect(() => {
-    const newSocket = io("http://localhost:4000");
+    const newSocket = io(backendURL);
     setSocket(newSocket);
 
     return () => {
       newSocket.disconnect();
     };
-  }, []);
+  }, [backendURL]);
 
   // Join room event
   useEffect(() => {
@@ -214,8 +216,8 @@ export default function Game() {
   };
 
   return (
-    <div className="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-md font-sans">
-      <h1 className="text-3xl font-bold mb-4 text-gray-800">Tic Tac Toe</h1>
+    <div className="flex flex-col items-center p-6 bg-blue-50 rounded-lg shadow-md font-sans">
+      <h1 className="text-3xl font-bold mb-4 text-gray-800">Tic Tac Toe ♾️</h1>
       <div className="flex flex-col mb-4 text-xl font-semibold text-gray-700 min-h-[1.5em] text-center">
         <span>{fadeMessage}</span>
         <span>{status}</span>

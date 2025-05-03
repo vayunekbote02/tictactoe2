@@ -1,21 +1,26 @@
+require("dotenv").config();
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
+const path = require("path");
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:5173", // Replace with your React app's URL
-    methods: ["GET", "POST"],
-  },
-});
+// const io = new Server(server, {   // uncomment this to use frontend
+//   cors: {
+//     origin: process.env.FRONTEND_URL,
+//     methods: ["GET", "POST"],
+//   },
+// });
+const io = new Server(server); // comment this out to use frontend
 const playerRooms = {};
+
+// Comment this out to use frontend
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
 
-  // When a user joins a room
   socket.on("join_room", (room) => {
     const roomSize = io.sockets.adapter.rooms.get(room)?.size || 0;
     if (roomSize >= 2) {
@@ -49,7 +54,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

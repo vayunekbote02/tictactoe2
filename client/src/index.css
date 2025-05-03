@@ -2,4 +2,5 @@
 
 body {
   @apply flex items-center justify-center min-h-screen;
+  @apply bg-blue-200;
 }
