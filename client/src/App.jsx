@@ -16,11 +16,13 @@ export default function Game() {
 
   const { winner, line: winningLine } = calculateWinner(squares);
 
-  // const backendURL = import.meta.env.VITE_REACT_APP_BACKEND_URL;
+  // Comment out before pushing to production
+  const backendURL = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   // Connect to socket event
   useEffect(() => {
-    const newSocket = io("https://tictactoe2-yk8j.onrender.com/");
+    // const newSocket = io("https://tictactoe2-yk8j.onrender.com/"); //comment out for dev testing
+    const newSocket = io(backendURL); // Comment out before pushing to production
     setSocket(newSocket);
 
     return () => {
