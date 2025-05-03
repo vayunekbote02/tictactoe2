@@ -1,0 +1,6 @@
+Just don't allow player to click on the board when not their turn. (done)
+Check the your turn message logic. (done)
+Game should not start till other player joins. (done)
+Restart Game button should refresh the board on both the devices. (done)
+When opponent leaves the room, if player is O, he becomes X and sees message "Waiting for opponent to join...". If player is X, he can see directly see the message. (done)
+Add react toast.
