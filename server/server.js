@@ -6,17 +6,23 @@ const path = require("path");
 
 const app = express();
 const server = http.createServer(app);
-// const io = new Server(server, {   // uncomment this to use frontend
-//   cors: {
-//     origin: process.env.FRONTEND_URL,
-//     methods: ["GET", "POST"],
-//   },
-// });
-const io = new Server(server); // comment this out to use frontend
-const playerRooms = {};
 
-// Comment this out to use frontend
-app.use(express.static(path.join(__dirname, "../client/dist")));
+// Uncomment below code to use frontend
+const io = new Server(server, {
+  cors: {
+    origin: process.env.FRONTEND_URL,
+    methods: ["GET", "POST"],
+  },
+});
+
+// Uncomment below code to use backend only
+/*
+const io = new Server(server); 
+
+app.use(express.static(path.join(__dirname, "client-dist")));
+*/
+
+const playerRooms = {};
 
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
