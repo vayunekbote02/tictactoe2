@@ -7,14 +7,17 @@ const path = require("path");
 const app = express();
 const server = http.createServer(app);
 
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
-});
+// Uncomment below code to use frontend
+// const io = new Server(server, {
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST"],
+//   },
+// });
 
-// Below code to use backend only
+// Uncomment below code to use backend only
+const io = new Server(server);
+
 app.use(express.static(path.join(__dirname, "client-dist")));
 
 const playerRooms = {};
