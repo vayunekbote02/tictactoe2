@@ -16,7 +16,7 @@ export default function Game() {
 
   const { winner, line: winningLine } = calculateWinner(squares);
 
-  const backendURL = import.meta.env.VITE_REACT_APP_BACKEND_URL;
+  // const backendURL = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
   // Connect to socket event
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function Game() {
     return () => {
       newSocket.disconnect();
     };
-  }, [backendURL]);
+  }, []);
 
   // Join room event
   useEffect(() => {
