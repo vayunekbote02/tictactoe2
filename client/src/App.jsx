@@ -20,7 +20,7 @@ export default function Game() {
 
   // Connect to socket event
   useEffect(() => {
-    const newSocket = io(backendURL);
+    const newSocket = io("https://tictactoe2-yk8j.onrender.com/");
     setSocket(newSocket);
 
     return () => {
